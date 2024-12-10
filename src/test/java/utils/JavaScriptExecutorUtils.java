@@ -20,11 +20,4 @@ public class JavaScriptExecutorUtils {
     public void executorClickOnElement(final WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
-
-    // Не работает почему в полях username и password на этом сайте, значения вводятся но потом исчезают
-    @Step("Метод ввода значения в поле")
-    public void executorSendKeys(WebElement element, String stringValue) {
-        // ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('value', '" + stringValue +"')", element);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].value='" + stringValue + "';", element);
-    }
 }

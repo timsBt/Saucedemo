@@ -1,69 +1,69 @@
 package pages;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Step;
-import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import utils.JavaScriptExecutorUtils;
 
-@Getter
 public class LoginPage {
 
-    private final WebDriver driver;
+    WebDriver driver;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "user-name")
-    private WebElement username;
+    By usernameField = By.id("user-name");
+    By passwordField = By.id("password");
+    By loginButton = By.id("login-button");
+    By errorTextMessage = By.xpath("//div[@class = 'error-message-container error']");
 
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(id = "login-button")
-    private WebElement loginButton;
-
-    @FindBy(xpath = "//div[@class = 'error-message-container error']")
-    private WebElement errorText;
+    @Description("Метод инициализации элемента")
+    public WebElement findBy(By element) {
+        return driver.findElement(element);
+    }
 
     @Step("Метод авторизации")
     public void login(String username, String password) {
-        this.username.sendKeys(username);
-        this.password.sendKeys(password);
-        loginButton.click();
+        findBy(usernameField).sendKeys(username);
+        findBy(passwordField).sendKeys(password);
+        findBy(loginButton).click();
     }
 
     @Step("Метод авторизации с помощью Actions")
     public void loginActions(String username, String password) {
         new Actions(driver)
-                .sendKeys(this.username, username)
-                .sendKeys(this.password, password)
-                .click(loginButton)
+                .sendKeys(findBy(usernameField), username)
+                .sendKeys(findBy(passwordField), password)
+                .click(findBy(loginButton))
                 .perform();
     }
 
     @Step("Метод авторизации с кликом по кнопке Login с помощью JavaScriptExecutor")
     public void loginExecutor(String username, String password) {
         JavaScriptExecutorUtils js = new JavaScriptExecutorUtils(driver);
-        this.username.sendKeys(username);
-        this.password.sendKeys(password);
-        js.executorClickOnElement(loginButton);
+        findBy(usernameField).sendKeys(username);
+        findBy(passwordField).sendKeys(password);
+        js.executorClickOnElement(findBy(loginButton));
     }
 
     @Step("Метод авторизации без Username")
     public void loginWithoutUsername(String password) {
-        this.password.sendKeys(password);
-        loginButton.click();
+        findBy(passwordField).sendKeys(password);
+        findBy(loginButton).click();
     }
 
     @Step("Метод авторизации без Password")
     public void loginWithoutPassword(String username) {
-        this.username.sendKeys(username);
-        loginButton.click();
+        findBy(usernameField).sendKeys(username);
+        findBy(loginButton).click();
+    }
+
+    @Step("Метод получения текста ошибки")
+    public String getErrorText() {
+        return findBy(errorTextMessage).getText();
     }
 }

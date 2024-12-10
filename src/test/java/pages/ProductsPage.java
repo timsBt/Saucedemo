@@ -1,18 +1,28 @@
 package pages;
 
-import lombok.Getter;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-@Getter
 public class ProductsPage {
 
-    public ProductsPage(final WebDriver webDriver) {
-        PageFactory.initElements(webDriver, this);
+    WebDriver driver;
+
+    By title = By.xpath("//span[text() = 'Products']");
+
+    public ProductsPage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    @FindBy(xpath = "//span[text() = 'Products']")
-    private WebElement productsPageText;
+    @Description("Метод инициализации элемента")
+    public WebElement findBy(By element) {
+        return driver.findElement(element);
+    }
+
+    @Step("Метод получения текста названия Страницы")
+    public String getTitle() {
+        return findBy(title).getText();
+    }
 }
