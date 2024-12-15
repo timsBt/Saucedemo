@@ -20,7 +20,7 @@ public final class PropertiesUtils {
         try {
             Properties props = new Properties();
             props.load(new InputStreamReader(new FileInputStream(
-                    "src/main/resources/aplication.properties"), StandardCharsets.UTF_8));
+                    "src/test/resources/aplication.properties"), StandardCharsets.UTF_8));
             return props.getProperty(param);
         } catch (Exception e) {
             e.printStackTrace();

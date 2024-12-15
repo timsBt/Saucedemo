@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.LoginPage;
 import pages.ProductsPage;
+import pages.YourCartPage;
 
 import java.time.Duration;
 
@@ -17,6 +18,7 @@ public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
+    YourCartPage yourCartPage;
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +29,7 @@ public class BaseTest {
         driver.get(valueProperties("mainPageUrl"));
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        yourCartPage = new YourCartPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
