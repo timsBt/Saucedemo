@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 import pages.YourCartPage;
@@ -19,6 +20,7 @@ public class BaseTest {
     LoginPage loginPage;
     ProductsPage productsPage;
     YourCartPage yourCartPage;
+    CheckoutPage checkoutPage;
 
     @BeforeMethod
     public void setUp() {
@@ -30,6 +32,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         yourCartPage = new YourCartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)

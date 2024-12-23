@@ -13,10 +13,12 @@ public class YourCartPage {
     WebDriver driver;
 
     By title = By.xpath("//span[text() = 'Your Cart']");
-    By nameProduct;
-    By descriptionProduct;
-    By priceProduct;
-    By allProductName = By.xpath("//div[@class = 'inventory_item_name']");
+    String productNamePattern = "//div[text() = '%s']";
+    String productDescriptionPattern = "//div[text() = '%s']/ancestor::div[@class = 'cart_item_label']" +
+            "//div[@class = 'inventory_item_desc']";
+    String productPricePattern = "//div[text() = '%s']/ancestor::div[@class = 'cart_item_label']" +
+            "//div[@class = 'inventory_item_price']";
+    By allProductName = By.cssSelector(".inventory_item_name");
 
     public YourCartPage(WebDriver driver) {
         this.driver = driver;
@@ -33,20 +35,18 @@ public class YourCartPage {
     }
 
     @Step("Метод получения Названия товара по названию Продукта")
-    public String getNameProduct(String productName) {
-        return findBy(nameProduct = By.xpath("//div[text() = '" + productName + "']")).getText();
+    public String getNameProduct(String product) {
+        return findBy(By.xpath(String.format(productNamePattern, product))).getText();
     }
 
     @Step("Метод получения Описания у товара по названию Продукта")
-    public String getDescriptionProduct(String productName) {
-        return findBy(descriptionProduct = By.xpath("//div[text() = '" + productName + "']/ancestor::" +
-                "div[@class = 'cart_item_label']//div[@class = 'inventory_item_desc']")).getText();
+    public String getDescriptionProduct(String product) {
+        return findBy(By.xpath(String.format(productDescriptionPattern, product))).getText();
     }
 
     @Step("Метод получения Цены у товара по названию Продукта")
-    public String getPriceProduct(String productName) {
-        return findBy(priceProduct = By.xpath("//div[text() = '" + productName + "']/ancestor::" +
-                "div[@class = 'cart_item_label']//div[@class = 'inventory_item_price']")).getText();
+    public String getPriceProduct(String product) {
+        return findBy(By.xpath(String.format(productPricePattern, product))).getText();
     }
 
     @Step("Список всех Названий товаров в корзине")

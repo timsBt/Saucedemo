@@ -13,14 +13,19 @@ public class ProductsPage {
     WebDriver driver;
 
     By title = By.xpath("//span[text() = 'Products']");
-    By addToCardProductButton;
-    By removeProductButton;
-    By priceProduct;
-    By descriptionProduct;
+    String addToCartPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
+            "//button[text() = 'Add to cart']";
+    String removeProductPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
+            "//button[text() = 'Remove']";
+    String priceProductPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
+            "//div[@class = 'inventory_item_price']";
+    String descriptionProductPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
+            "//div[@class = 'inventory_item_desc']";
     By cartButton = By.cssSelector(".shopping_cart_link");
-    By cartBadge = By.xpath("//span[@class = 'shopping_cart_badge']");
+    By cartBadge = By.cssSelector(".shopping_cart_badge");
     By allAddToCardButton = By.xpath("//button[text() = 'Add to cart']");
-    By allProductName = By.xpath("//div[@class = 'inventory_item_name ']");
+    By allProductName = By.cssSelector(".inventory_item_name");
+    By checkoutButton = By.xpath("//button[text() = 'Checkout']");
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -37,27 +42,23 @@ public class ProductsPage {
     }
 
     @Step("Метод клика на Add to cart по названию Продукта")
-    public void clickAddToCardProductButton(String productName) {
-        findBy(addToCardProductButton = By.xpath("//div[text() = '" + productName + "']/ancestor::" +
-                "div[@class = 'inventory_item_description']//button[text() = 'Add to cart']")).click();
+    public void addToCart(String product) {
+        findBy(By.xpath(String.format(addToCartPattern, product))).click();
     }
 
     @Step("Метод клика на Remove по названию Продукта")
-    public void clickRemoveButton(String productName) {
-        findBy(removeProductButton = By.xpath("//div[text() = '" + productName + "']/ancestor::" +
-                "div[@class = 'inventory_item_description']//button[text() = 'Remove']")).click();
+    public void clickRemoveButton(String product) {
+        findBy(By.xpath(String.format(removeProductPattern, product))).click();
     }
 
     @Step("Метод получения Цены у товара по названию Продукта")
-    public String getPriceProduct(String productName) {
-        return findBy(priceProduct = By.xpath("//div[text() = '" + productName + "']/ancestor::div[@class =" +
-                " 'inventory_item_description']//div[@class = 'inventory_item_price']")).getText();
+    public String getPriceProduct(String product) {
+        return findBy(By.xpath(String.format(priceProductPattern, product))).getText();
     }
 
     @Step("Метод получения Описания у товара по названию Продукта")
-    public String getDescriptionProduct(String productName) {
-        return findBy(descriptionProduct = By.xpath("//div[text() = '" + productName + "']/ancestor::" +
-                "div[@class = 'inventory_item_description']//div[@class = 'inventory_item_desc']")).getText();
+    public String getDescriptionProduct(String product) {
+        return findBy(By.xpath(String.format(descriptionProductPattern, product))).getText();
     }
 
     @Step("Метод клика по корзине")
@@ -78,5 +79,10 @@ public class ProductsPage {
     @Step("Список всех Названий товаров на странице")
     public List<WebElement> allProductName() {
         return driver.findElements(allProductName);
+    }
+
+    @Step("Метод клика по Checkout")
+    public void checkoutClick() {
+        findBy(checkoutButton).click();
     }
 }
