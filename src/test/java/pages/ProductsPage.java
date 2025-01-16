@@ -36,42 +36,42 @@ public class ProductsPage {
         return driver.findElement(element);
     }
 
-    @Step("Метод получения текста названия Страницы")
+    @Step("Получение текста названия Страницы")
     public String getTitle() {
         return findBy(title).getText();
     }
 
-    @Step("Метод клика на Add to cart по названию Продукта")
+    @Step("Клик на Add to cart по названию Продукта: {product}")
     public void addToCart(String product) {
         findBy(By.xpath(String.format(addToCartPattern, product))).click();
     }
 
-    @Step("Метод клика на Remove по названию Продукта")
+    @Step("Клик на Remove по названию Продукта: {product}")
     public void clickRemoveButton(String product) {
         findBy(By.xpath(String.format(removeProductPattern, product))).click();
     }
 
-    @Step("Метод получения Цены у товара по названию Продукта")
+    @Step("Получение Цены у товара по названию Продукта: {product}")
     public String getPriceProduct(String product) {
         return findBy(By.xpath(String.format(priceProductPattern, product))).getText();
     }
 
-    @Step("Метод получения Описания у товара по названию Продукта")
+    @Step("Получение Описания у товара по названию Продукта: {product}")
     public String getDescriptionProduct(String product) {
         return findBy(By.xpath(String.format(descriptionProductPattern, product))).getText();
     }
 
-    @Step("Метод клика по корзине")
+    @Step("Клик по корзине")
     public void clickCartButton() {
         findBy(cartButton).click();
     }
 
-    @Step("Метод получения значения в иконке корзины")
+    @Step("Получение значения в иконке корзины")
     public String getCartBadge() {
         return findBy(cartBadge).getText();
     }
 
-    @Step("Метод клика по корзине - все кнопки addToCardButton на странице")
+    @Step("Клик по корзине - все кнопки addToCardButton на странице")
     public List<WebElement> clickAddToCardButton() {
         return driver.findElements(allAddToCardButton);
     }
@@ -81,7 +81,7 @@ public class ProductsPage {
         return driver.findElements(allProductName);
     }
 
-    @Step("Метод клика по Checkout")
+    @Step("Клик по Checkout")
     public void checkoutClick() {
         findBy(checkoutButton).click();
     }

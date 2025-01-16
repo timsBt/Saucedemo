@@ -34,22 +34,22 @@ public class CheckoutPage {
         return driver.findElement(element);
     }
 
-    @Step("Метод получения текста названия Страницы")
+    @Step("Получение текста названия Страницы")
     public String getTitleYourInformation() {
         return findBy(titleYourInformation).getText();
     }
 
-    @Step("Метод получения текста названия Страницы")
+    @Step("Получение текста названия Страницы")
     public String getTitleOverview() {
         return findBy(titleOverview).getText();
     }
 
-    @Step("Метод получения текста названия Страницы")
+    @Step("Получение текста названия Страницы")
     public String getTitleComplete() {
         return findBy(titleComplete).getText();
     }
 
-    @Step("Метод ввода информации в поля и нажатие кнопки continue")
+    @Step("Ввод информации в поля: {firstName}, {lastName}, {postalCode} и Нажатие кнопки continue")
     public void sendYourInformation(String firstName, String lastName, String postalCode) {
         findBy(firstNameField).sendKeys(firstName);
         findBy(lastNameField).sendKeys(lastName);
@@ -57,37 +57,37 @@ public class CheckoutPage {
         findBy(continueButton).click();
     }
 
-    @Step("Метод получения Цены у товара по названию Продукта")
+    @Step("Получение Цены у товара по названию Продукта: {product}")
     public String getPriceProduct(String product) {
         return findBy(By.xpath(String.format(productPrice, product))).getText();
     }
 
-    @Step("Метод получения значения в Item Total блока Price Total")
+    @Step("Получение значения в Item Total блока Price Total")
     public String getItemTotalValue() {
         return findBy(itemTotalValue).getText();
     }
 
-    @Step("Метод получения значения в Tax блока Price Total")
+    @Step("Получение значения в Tax блока Price Total")
     public String getTaxValue() {
         return findBy(taxValue).getText();
     }
 
-    @Step("Метод получения значения в Total блока Price Total")
+    @Step("Получение значения в Total блока Price Total")
     public String getTotalValue() {
         return findBy(totalValue).getText();
     }
 
-    @Step("Метод клика по кнопке Finish")
+    @Step("Клик по кнопке Finish")
     public void finishClick() {
         findBy(finishButton).click();
     }
 
-    @Step("Метод клика по кнопке Back Home")
+    @Step("Клик по кнопке Back Home")
     public void backHomeClick() {
         findBy(backHomeButton).click();
     }
 
-    @Step("Метод получения сообщения после оформления заказа")
+    @Step("Получение сообщения после оформления заказа")
     public String getCompleteMessage() {
         return findBy(completeMessage).getText();
     }

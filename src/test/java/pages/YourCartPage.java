@@ -29,22 +29,22 @@ public class YourCartPage {
         return driver.findElement(element);
     }
 
-    @Step("Метод получения текста названия Страницы")
+    @Step("Получение текста названия Страницы")
     public String getTitle() {
         return findBy(title).getText();
     }
 
-    @Step("Метод получения Названия товара по названию Продукта")
+    @Step("Получение Названия товара по названию Продукта: {product}")
     public String getNameProduct(String product) {
         return findBy(By.xpath(String.format(productNamePattern, product))).getText();
     }
 
-    @Step("Метод получения Описания у товара по названию Продукта")
+    @Step("Получение Описания у товара по названию Продукта: {product}")
     public String getDescriptionProduct(String product) {
         return findBy(By.xpath(String.format(productDescriptionPattern, product))).getText();
     }
 
-    @Step("Метод получения Цены у товара по названию Продукта")
+    @Step("Получение Цены у товара по названию Продукта: {product}")
     public String getPriceProduct(String product) {
         return findBy(By.xpath(String.format(productPricePattern, product))).getText();
     }
