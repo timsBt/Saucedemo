@@ -7,12 +7,14 @@ import org.testng.asserts.SoftAssert;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
 import static utils.PropertiesUtils.valueProperties;
 
 public class ProductsTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
     String productName = "Sauce Labs Fleece Jacket";
+    String productName2 = "Sauce Labs Backpack";
 
     @Test(description = "Тест добавления товара в корзину. Проверка наименования, описания и цены товара в корзине")
     public void addProductTest() {
@@ -21,7 +23,7 @@ public class ProductsTest extends BaseTest {
                 productsPage.getTitle(),
                 "Products",
                 "Авторизация не пройдена");
-        productsPage.clickAddToCardProductButton(productName);
+        productsPage.addToCart(productName);
         String descriptionProductName = productsPage.getDescriptionProduct(productName);
         String priceProductName = productsPage.getPriceProduct(productName);
         productsPage.clickCartButton();
@@ -94,6 +96,71 @@ public class ProductsTest extends BaseTest {
                 productsNameOnCartList,
                 productsNameOnProductsList,
                 "В корзине не совпадают названия товаров со страницы Products");
+        softAssert.assertAll();
+    }
+
+    @Test(description = "Тест проверки расчета сумм в блоке Price Total")
+    public void checkValuePriceTotalTest() {
+        loginPage.login(valueProperties("login"), valueProperties("password"));
+        productsPage.addToCart(productName);
+        productsPage.addToCart(productName2);
+        String priceProductName = productsPage.getPriceProduct(productName);
+        String priceProductName2 = productsPage.getPriceProduct(productName2);
+        String productsSum = String.valueOf(parseDouble(priceProductName.replace("$", "")) +
+                parseDouble(priceProductName2.replace("$", "")));
+        productsPage.clickCartButton();
+        productsPage.checkoutClick();
+        softAssert.assertEquals(
+                checkoutPage.getTitleYourInformation(),
+                "Checkout: Your Information",
+                "Страница Checkout: Your Information не открылась");
+        checkoutPage.sendYourInformation("Droid", "R2-D2", "999");
+        softAssert.assertEquals(
+                checkoutPage.getTitleOverview(),
+                "Checkout: Overview",
+                "Страница Checkout: Overview не открылась");
+        softAssert.assertEquals(
+                checkoutPage.getPriceProduct(productName),
+                priceProductName,
+                "Товар в Checkout: Overview не соответствует цене товара №1 на странице Products");
+        softAssert.assertEquals(
+                checkoutPage.getPriceProduct(productName2),
+                priceProductName2,
+                "Товар в Checkout: Overview не соответствует цене товара №2 на странице Products");
+        softAssert.assertEquals(
+                checkoutPage.getItemTotalValue().replace("Item total: $", ""),
+                productsSum,
+                "В поле Item total Сумма значений двух товаров не верное");
+        String tax = checkoutPage.getTaxValue().replace("Tax: $", "");
+        String total = String.format("%.2f", (parseDouble(productsSum) + parseDouble(tax))).replace(",", ".");
+        softAssert.assertEquals(
+                checkoutPage.getTotalValue().replace("Total: $", ""),
+                total,
+                "Сумма Total не соответствует сумме всех товаров и Tax");
+        softAssert.assertAll();
+    }
+
+    @Test(description = "Тест проверки оформления заказа")
+    public void checkCompleteOrderTest() {
+        loginPage.login(valueProperties("login"), valueProperties("password"));
+        productsPage.addToCart(productName);
+        productsPage.clickCartButton();
+        productsPage.checkoutClick();
+        checkoutPage.sendYourInformation("Droid", "R2-D2", "999");
+        checkoutPage.finishClick();
+        softAssert.assertEquals(
+                checkoutPage.getTitleComplete(),
+                "Checkout: Complete!",
+                "Страница Checkout: Complete! не открылась");
+        softAssert.assertEquals(
+                checkoutPage.getCompleteMessage(),
+                "Thank you for your order!",
+                "Сообщение не отобразилось");
+        checkoutPage.backHomeClick();
+        softAssert.assertEquals(
+                productsPage.getTitle(),
+                "Products",
+                "Страница Products не открылась");
         softAssert.assertAll();
     }
 }
