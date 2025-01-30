@@ -18,7 +18,8 @@ public class ProductsTest extends BaseTest {
     String productName = "Sauce Labs Fleece Jacket";
     String productName2 = "Sauce Labs Backpack";
 
-    @Test(testName = "Тест добавления товара в корзину. Проверка наименования, описания и цены товара в корзине")
+    @Test(testName = "Тест добавления товара в корзину. Проверка наименования, описания и цены товара в корзине",
+            description = "Тест добавления товара в корзину", groups = {"smoke", "ui"})
     @Description("Тест добавления товара в корзину. Проверка наименования, описания и цены товара в корзине")
     @Feature("Проверка товара в корзине")
     @Story("Добавление товара в корзину")
@@ -52,7 +53,8 @@ public class ProductsTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Тест проверки значения иконки корзины после добавления и удаления товара")
+    @Test(testName = "Тест проверки значения иконки корзины после добавления и удаления товара",
+            description = "Тест проверки значения иконки корзины", groups = {"smoke", "ui"})
     @Description("Тест проверки значения иконки корзины после добавления и удаления товара")
     @Feature("Проверка товара в корзине")
     @Story("Добавление товара в корзину")
@@ -81,7 +83,8 @@ public class ProductsTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Тест проверки попадания всех товаров на странице в корзину")
+    @Test(testName = "Тест проверки попадания всех товаров на странице в корзину",
+            description = "Тест проверки попадания всех товаров на странице в корзину", groups = {"smoke", "ui"})
     @Description("Тест проверки попадания всех товаров на странице в корзину")
     @Feature("Проверка товара в корзине")
     @Story("Добавление товара в корзину")
@@ -113,7 +116,8 @@ public class ProductsTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Тест проверки расчета сумм в блоке Price Total")
+    @Test(testName = "Тест проверки расчета сумм в блоке Price Total",
+            description = "Тест проверки расчета сумм в блоке Price Total", groups = {"smoke", "ui"})
     @Description("Тест проверки расчета сумм в блоке Price Total")
     @Feature("Проверка товара в корзине")
     @Story("Проверка расчета сумм")
@@ -158,7 +162,8 @@ public class ProductsTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(testName = "Тест проверки оформления заказа")
+    @Test(testName = "Тест проверки оформления заказа",
+            description = "Тест проверки оформления заказа", groups = {"smoke", "ui"})
     @Description("Тест проверки оформления заказа")
     @Feature("Проверка товара в корзине")
     @Story("Оформление заказа")

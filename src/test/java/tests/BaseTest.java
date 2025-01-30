@@ -3,9 +3,12 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
@@ -24,11 +27,17 @@ public class BaseTest {
     YourCartPage yourCartPage;
     CheckoutPage checkoutPage;
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        driver = new ChromeDriver(options);
+    public void setUp(@Optional("Chrome") String browser) {
+        if (browser.equalsIgnoreCase("Chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized");
+            driver = new ChromeDriver(options);
+        } else if (browser.equalsIgnoreCase("Edge")) {
+            driver = new EdgeDriver();
+            driver.manage().window().maximize();
+        }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(valueProperties("mainPageUrl"));
         loginPage = new LoginPage(driver);
