@@ -28,12 +28,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Setup browser Chrome
-      - uses: abhi1693/setup-browser@v0.3.4
+        uses: abhi1693/setup-browser@v0.3.4
         with:
           browser: chrome
           version: latest
       - name: Setup browser Edge
-      - uses: abhi1693/setup-browser@v0.3.4
+        uses: abhi1693/setup-browser@v0.3.4
         with:
           browser: edge
           version: latest
