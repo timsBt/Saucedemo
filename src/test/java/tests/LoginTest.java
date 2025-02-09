@@ -94,7 +94,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(testName = "Падающий тест для проверки скриншота", description = "Падающий тест для проверки скриншота",
-            groups = {"smoke", "ui"})
+            groups = {"smoke", "ui"}, enabled = false)
     @Description("Падающий тест для проверки скриншота")
     @Feature("Проверка скриншота")
     @Story("Специально падающий тест")
