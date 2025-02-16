@@ -1,19 +1,19 @@
-//package tests;
-//
-//import io.qameta.allure.*;
-//import org.openqa.selenium.WebElement;
-//import org.testng.annotations.Test;
-//import org.testng.asserts.SoftAssert;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import static java.lang.Double.parseDouble;
-//import static utils.PropertiesUtils.valueProperties;
-//
-//@Epic("UI tests")
-//public class ProductsTest extends BaseTest {
-//
+package tests;
+
+import io.qameta.allure.*;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Double.parseDouble;
+import static utils.PropertiesUtils.valueProperties;
+
+@Epic("UI tests")
+public class ProductsTest extends BaseTest {
+
 //    SoftAssert softAssert = new SoftAssert();
 //    String productName = "Sauce Labs Fleece Jacket";
 //    String productName2 = "Sauce Labs Backpack";
@@ -190,4 +190,4 @@
 //                "Страница Products не открылась");
 //        softAssert.assertAll();
 //    }
-//}
+}
