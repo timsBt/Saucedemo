@@ -15,8 +15,8 @@ on:
     branches: [ "master" ]
 
 env:
-  LOGIN: ${{secrets.LOGIN}}
-  PASSWORD: ${{secrets.PASSWORD}}
+  USERNAME: ${{secrets.SD_USER}}
+  PASSWORD: ${{secrets.SD_PASSWORD}}
 
 jobs:
   build:
@@ -36,5 +36,5 @@ jobs:
         with:
           browser: chrome
           version: latest
-      - name: Setup browser Chrome
-        run: mvn clean test -Dlogin=$LOGIN -Dpassword=$PASSWORD
+      - name: Run TEST
+        run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD
