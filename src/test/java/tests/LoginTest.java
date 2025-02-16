@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с корректными данными")
     @Severity(SeverityLevel.BLOCKER)
     public void loginTest() {
-        loginPage.login(login, password);
+        loginPage.login(user, password);
         assertEquals(
                 productsPage.getTitle(),
                 "Products",
