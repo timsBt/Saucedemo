@@ -51,6 +51,9 @@ public class BaseTest {
         productsPage = new ProductsPage(driver);
         yourCartPage = new YourCartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+
+        System.out.println(user);
+        System.out.println(password);
     }
 
     @AfterMethod(alwaysRun = true)
