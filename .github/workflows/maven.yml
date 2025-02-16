@@ -15,11 +15,8 @@ on:
     branches: [ "master" ]
 
 env:
-  MAINPAGEURL: ${{secrets.MAINPAGEURL}}
   LOGIN: ${{secrets.LOGIN}}
   PASSWORD: ${{secrets.PASSWORD}}
-  LOGINFAILED: ${{secrets.LOGINFAILED}}
-  PASSWORDFAILED: ${{secrets.PASSWORDFAILED}}
 
 jobs:
   build:
@@ -40,4 +37,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Setup browser Chrome
-        run: mvn clean test -DmainPageUrl=$MAINPAGEURL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DloginFailed=$LOGINFAILED -DpasswordFailed=$PASSWORDFAILED
+        run: mvn clean test -Dlogin=$LOGIN -Dpassword=$PASSWORD

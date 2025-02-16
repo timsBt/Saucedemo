@@ -28,11 +28,8 @@ public class BaseTest {
     YourCartPage yourCartPage;
     CheckoutPage checkoutPage;
 
-    public String mainPageUrl = System.getProperty("mainPageUrl");
     public String login = System.getProperty("login");
     public String password = System.getProperty("password");
-    public String loginFailed = System.getProperty("loginFailed");
-    public String passwordFailed = System.getProperty("passwordFailed");
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -49,7 +46,7 @@ public class BaseTest {
             driver = new EdgeDriver(edgeOptions);
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(mainPageUrl);
+        driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         yourCartPage = new YourCartPage(driver);
