@@ -13,8 +13,8 @@ on:
     branches: [ "master" ]
 
 env:
-  USERNAME: ${{ secrets.SD_USER }}
-  PASSWORD: ${{ secrets.SD_PASSWORD }}
+  USER: ${{ secrets.USER }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 
 jobs:
   build:
@@ -35,4 +35,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Run TEST
-        run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD
+        run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
