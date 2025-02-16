@@ -39,5 +39,5 @@ jobs:
         with:
           browser: chrome
           version: latest
-      - name: Setup browser Edge
+      - name: Setup browser Chrome
         run: mvn clean test -DmainPageUrl=$MAINPAGEURL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DloginFailed=$LOGINFAILED -DpasswordFailed=$PASSWORDFAILED
