@@ -52,8 +52,8 @@ public class BaseTest {
         yourCartPage = new YourCartPage(driver);
         checkoutPage = new CheckoutPage(driver);
 
-        System.out.println(user);
-        System.out.println(password);
+        System.out.println(System.getProperty("user"));
+        System.out.println(System.getProperty("password"));
     }
 
     @AfterMethod(alwaysRun = true)
