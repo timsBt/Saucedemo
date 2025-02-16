@@ -9,14 +9,12 @@
 name: SauceDemoAction
 
 on:
-  push:
-    branches: [ "actionAdd" ]
   pull_request:
     branches: [ "master" ]
 
 env:
-  USERNAME: ${{secrets.SD_USER}}
-  PASSWORD: ${{secrets.SD_PASSWORD}}
+  USERNAME: ${{ secrets.SD_USER }}
+  PASSWORD: ${{ secrets.SD_PASSWORD }}
 
 jobs:
   build:
@@ -37,4 +35,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Run TEST
-        run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD
+        run: mvn clean test -P ssc-test -Duser=$USERNAME -Dpassword=$PASSWORD
