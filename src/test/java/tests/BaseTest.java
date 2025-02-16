@@ -3,9 +3,13 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.CheckoutPage;
 import pages.LoginPage;
 import pages.ProductsPage;
@@ -14,6 +18,7 @@ import utils.AllureUtils;
 
 import java.time.Duration;
 
+import static utils.PropertiesUtils.valueProperties;
 
 public class BaseTest {
 
@@ -29,12 +34,20 @@ public class BaseTest {
     public String loginFailed = System.getProperty("loginFailed");
     public String passwordFailed = System.getProperty("passwordFailed");
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp() {
+    public void setUp(@Optional("Chrome") String browser) {
+        if (browser.equalsIgnoreCase("Chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
             options.addArguments("--headless");
             driver = new ChromeDriver(options);
+        } else if (browser.equalsIgnoreCase("Edge")) {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            edgeOptions.addArguments("--start-maximized");
+            edgeOptions.addArguments("--headless");
+            driver = new EdgeDriver(edgeOptions);
+        }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(mainPageUrl);
         loginPage = new LoginPage(driver);
