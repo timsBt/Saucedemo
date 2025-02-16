@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
-import static utils.PropertiesUtils.valueProperties;
 
 @Epic("UI tests")
 public class LoginTest extends BaseTest {
