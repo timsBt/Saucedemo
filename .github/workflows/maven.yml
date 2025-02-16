@@ -14,6 +14,13 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  MAINPAGEURL: ${{secrets.MAINPAGEURL}}
+  LOGIN: ${{secrets.LOGIN}}
+  PASSWORD: ${{secrets.PASSWORD}}
+  LOGINFAILED: ${{secrets.LOGINFAILED}}
+  PASSWORDFAILED: ${{secrets.PASSWORDFAILED}}
+
 jobs:
   build:
 
@@ -33,9 +40,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Setup browser Edge
-        uses: abhi1693/setup-browser@v0.3.4
-        with:
-          browser: edge
-          version: latest
-      - name: Run crossBrowser Test
-        run: mvn clean -DsuiteXmlFile='src/test/resources/CrossBrowser.xml' test
+        run: mvn clean test -DmainPageUrl=$MAINPAGEURL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DloginFailed=$LOGINFAILED -DpasswordFailed=$PASSWORDFAILED

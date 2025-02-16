@@ -25,7 +25,7 @@ public class ProductsTest extends BaseTest {
     @Story("Добавление товара в корзину")
     @Severity(SeverityLevel.CRITICAL)
     public void addProductTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         softAssert.assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -60,7 +60,7 @@ public class ProductsTest extends BaseTest {
     @Story("Добавление товара в корзину")
     @Severity(SeverityLevel.MINOR)
     public void checkCartBadgeTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         softAssert.assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -90,7 +90,7 @@ public class ProductsTest extends BaseTest {
     @Story("Добавление товара в корзину")
     @Severity(SeverityLevel.CRITICAL)
     public void checkAllProductsNameOnCartTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         softAssert.assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -123,7 +123,7 @@ public class ProductsTest extends BaseTest {
     @Story("Проверка расчета сумм")
     @Severity(SeverityLevel.CRITICAL)
     public void checkValuePriceTotalTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         productsPage.addToCart(productName);
         productsPage.addToCart(productName2);
         String priceProductName = productsPage.getPriceProduct(productName);
@@ -169,7 +169,7 @@ public class ProductsTest extends BaseTest {
     @Story("Оформление заказа")
     @Severity(SeverityLevel.CRITICAL)
     public void checkCompleteOrderTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         productsPage.addToCart(productName);
         productsPage.clickCartButton();
         productsPage.checkoutClick();

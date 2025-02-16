@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с корректными данными")
     @Severity(SeverityLevel.BLOCKER)
     public void loginTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -30,7 +30,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с корректными данными")
     @Severity(SeverityLevel.BLOCKER)
     public void loginActionsTest() {
-        loginPage.loginActions(valueProperties("login"), valueProperties("password"));
+        loginPage.loginActions(login, password);
         assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -44,7 +44,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с корректными данными")
     @Severity(SeverityLevel.BLOCKER)
     public void loginExecutorTest() {
-        loginPage.loginExecutor(valueProperties("login"), valueProperties("password"));
+        loginPage.loginExecutor(login, password);
         assertEquals(
                 productsPage.getTitle(),
                 "Products",
@@ -58,7 +58,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с некорректными данными")
     @Severity(SeverityLevel.CRITICAL)
     public void loginFailedTest() {
-        loginPage.login(valueProperties("loginFailed"), valueProperties("passwordFailed"));
+        loginPage.login(loginFailed, passwordFailed);
         assertEquals(
                 loginPage.getErrorText(),
                 "Epic sadface: Username and password do not match any user in this service",
@@ -72,7 +72,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с некорректными данными")
     @Severity(SeverityLevel.CRITICAL)
     public void loginFailedUsernameTest() {
-        loginPage.loginWithoutUsername(valueProperties("password"));
+        loginPage.loginWithoutUsername(password);
         assertEquals(
                 loginPage.getErrorText(),
                 "Epic sadface: Username is required",
@@ -86,7 +86,7 @@ public class LoginTest extends BaseTest {
     @Story("Авторизация с некорректными данными")
     @Severity(SeverityLevel.CRITICAL)
     public void loginFailedPasswordTest() {
-        loginPage.loginWithoutPassword(valueProperties("login"));
+        loginPage.loginWithoutPassword(login);
         assertEquals(
                 loginPage.getErrorText(),
                 "Epic sadface: Password is required",
@@ -101,7 +101,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
     @Flaky
     public void loginFailedScreenShotTest() {
-        loginPage.login(valueProperties("login"), valueProperties("password"));
+        loginPage.login(login, password);
         assertEquals(
                 productsPage.getTitle(),
                 "Страница какая то",
