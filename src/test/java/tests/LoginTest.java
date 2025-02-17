@@ -16,6 +16,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     public void loginTest() {
         loginPage.login(user, password);
+        System.out.println(productsPage.getTitle());
         assertEquals(
                 productsPage.getTitle(),
                 "Products",

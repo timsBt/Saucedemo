@@ -28,11 +28,11 @@ public class BaseTest {
     YourCartPage yourCartPage;
     CheckoutPage checkoutPage;
 
-    String user = System.getProperty("user");
-    String password = System.getProperty("password");
+//    String user = System.getProperty("user");
+//    String password = System.getProperty("password");
 
-//    user=standard_user
-//    password=secret_sauce
+//    String user="standard_user";
+//    String password="secret_sauce";
 
     @Parameters({"browser"})
     @BeforeMethod

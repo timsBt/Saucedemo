@@ -12,7 +12,7 @@ public class ProductsPage {
 
     WebDriver driver;
 
-    By title = By.xpath("//span[text() = 'Products']");
+    By title = By.cssSelector("[data-test=title]");
     String addToCartPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
             "//button[text() = 'Add to cart']";
     String removeProductPattern = "//div[text() = '%s']//ancestor::div[@class = 'inventory_item']" +
