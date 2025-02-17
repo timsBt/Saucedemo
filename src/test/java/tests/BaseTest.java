@@ -31,6 +31,7 @@ public class BaseTest {
     String user = System.getProperty("user");
     String password = System.getProperty("password");
 
+
     @Parameters({"browser"})
     @BeforeMethod
     public void setUp(@Optional("Chrome") String browser) {
