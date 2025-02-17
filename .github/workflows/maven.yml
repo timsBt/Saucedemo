@@ -10,7 +10,7 @@ name: SauceDemoAction
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "addSecrets"]
   pull_request:
     branches: ["master"]
 
