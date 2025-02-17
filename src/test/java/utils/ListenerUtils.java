@@ -7,6 +7,6 @@ public class ListenerUtils implements ITestListener {
 
     @Override
     public void onTestFailure(final ITestResult result) {
-        System.out.println("<------------------------------ ТЕСТ УПАЛ ------------------------------");
+        System.out.println("<------------------------------ TEST FAILED ------------------------------");
     }
 }

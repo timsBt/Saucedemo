@@ -28,6 +28,10 @@ public class BaseTest {
     YourCartPage yourCartPage;
     CheckoutPage checkoutPage;
 
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
+
+
     @Parameters({"browser"})
     @BeforeMethod
     public void setUp(@Optional("Chrome") String browser) {
@@ -43,11 +47,14 @@ public class BaseTest {
             driver = new EdgeDriver(edgeOptions);
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(valueProperties("mainPageUrl"));
+        driver.get("https://www.saucedemo.com/");
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         yourCartPage = new YourCartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+
+        System.out.println(System.getProperty("user"));
+        System.out.println(System.getProperty("password"));
     }
 
     @AfterMethod(alwaysRun = true)
