@@ -14,10 +14,6 @@ on:
   pull_request:
     branches: ["master"]
 
-env:
-  USER: ${{secrets.SD_LOGIN}}
-  PASSWORD: ${{secrets.SD_PASSWORD}}
-
 jobs:
   build:
 
@@ -37,4 +33,7 @@ jobs:
           browser: chrome
           version: latest
       - name: Run TEST
+        env:
+          USER: ${{ secrets.SD_LOGIN }}
+          PASSWORD: ${{ secrets.SD_PASSWORD }}
         run: mvn clean test -Duser=$USER -Dpassword=$PASSWORD
