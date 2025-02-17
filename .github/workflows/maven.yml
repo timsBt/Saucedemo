@@ -10,13 +10,13 @@ name: SauceDemoAction
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 env:
-  USER: ${{ secrets.USER }}
-  PASSWORD: ${{ secrets.PASSWORD }}
+  USER: ${{secrets.SD_LOGIN}}
+  PASSWORD: ${{secrets.SD_PASSWORD}}
 
 jobs:
   build:
