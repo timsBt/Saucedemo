@@ -21,6 +21,7 @@ public class LoginTest extends BaseTest {
                 productsPage.getTitle(),
                 "Products",
                 "Авторизация не пройденна");
+
     }
 
 //    @Test(testName = "Тест авторизации с помощью Actions. Позитивный кейс", description = "Тест авторизации",
