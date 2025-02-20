@@ -16,10 +16,12 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     public void loginTest() {
         loginPage.login(user, password);
+        System.out.println(productsPage.getTitle());
         assertEquals(
                 productsPage.getTitle(),
                 "Products",
                 "Авторизация не пройденна");
+
     }
 
 //    @Test(testName = "Тест авторизации с помощью Actions. Позитивный кейс", description = "Тест авторизации",

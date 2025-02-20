@@ -31,6 +31,8 @@ public class BaseTest {
     String user = System.getProperty("user");
     String password = System.getProperty("password");
 
+//    user=standard_user
+//    password=secret_sauce
 
     @Parameters({"browser"})
     @BeforeMethod
